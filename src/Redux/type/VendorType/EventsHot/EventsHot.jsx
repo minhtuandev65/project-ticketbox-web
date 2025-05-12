@@ -1,0 +1,1 @@
+export const SET_LIST_EVENTS_HOT = "SET_LIST_EVENTS_HOT";

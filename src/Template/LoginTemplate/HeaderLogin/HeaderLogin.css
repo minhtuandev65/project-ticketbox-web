@@ -1,0 +1,75 @@
+/* Hover hiệu ứng cho button */
+.btn-register {
+    transition: all 0.3s ease;
+    font-weight: 800 !important;
+    border: 2px solid #ffffff !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    border-radius: 30px !important;
+    height: 60px !important;
+    width: 200px !important;
+}
+
+/* Hover override */
+.btn-register:hover {
+    outline: 2px solid #000000 !important;
+    background: rgb(255, 255, 255) !important;
+    color: black !important;
+}
+
+/* Responsive header */
+@media screen and (max-width: 1024px) {
+    .ant-layout-header {
+        padding: 0 40px !important;
+        height: 70px !important;
+        gap: 16px;
+    }
+
+    .ant-layout-header img {
+        max-width: 160px !important;
+        height: auto;
+    }
+
+    .btn-register {
+        font-size: 14px !important;
+        width: 160px !important;
+        height: 44px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ant-layout-header {
+        padding: 0 20px !important;
+        height: 70px !important;
+    }
+
+    .ant-layout-header img {
+        max-width: 140px !important;
+    }
+
+    .btn-register {
+        font-size: 12px !important;
+        width: 140px !important;
+        height: 40px !important;
+        border-radius: 20px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .ant-layout-header {
+        padding: 0 12px !important;
+        height: 70px !important;
+    }
+
+    .ant-layout-header img {
+        max-width: 120px !important;
+    }
+
+    .btn-register {
+        font-size: 11px !important;
+        width: 110px !important;
+        height: 36px !important;
+        border-radius: 16px !important;
+        padding: 0 8px !important;
+    }
+}

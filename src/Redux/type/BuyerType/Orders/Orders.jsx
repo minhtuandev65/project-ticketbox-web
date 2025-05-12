@@ -1,0 +1,2 @@
+export const SET_CREATE_ORDER = "SET_CREATE_ORDER";
+export const SET_PAYMENT_ORDER = "SET_PAYMENT_ORDER";

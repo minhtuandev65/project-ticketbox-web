@@ -1,0 +1,114 @@
+/* Placeholder cho các trình duyệt */
+input::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #000000;
+}
+
+input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #000000;
+}
+
+input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #000000;
+}
+
+input:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #000000;
+}
+
+/* Hover effect cho button đăng nhập */
+button.btn-register:hover {
+    outline: 2px solid #000000 !important;
+    background: rgb(255, 255, 255) !important;
+    color: #000 !important;
+    font-weight: 1000 !important;
+}
+
+/* Hover effect cho button Google */
+button.btn-google:hover {
+    outline: 2px solid #EBEFF2 !important;
+    background: #EBEFF2 !important;
+}
+
+/* Responsive cho các màn hình nhỏ hơn 768px */
+@media screen and (max-width: 768px) {
+    form {
+        width: 80% !important;
+        /* Điều chỉnh độ rộng form */
+        height: auto !important;
+        /* Không cố định chiều cao */
+        padding: 20px !important;
+        /* Thêm padding cho form */
+    }
+
+    h3 {
+        font-size: 22px !important;
+        /* Giảm kích thước font chữ tiêu đề */
+    }
+
+    input {
+        height: 40px !important;
+        /* Điều chỉnh chiều cao của input */
+        font-size: 16px !important;
+        /* Giảm kích thước font chữ trong input */
+    }
+
+    input::placeholder {
+        font-size: 14px !important;
+        /* Giảm kích thước font cho placeholder */
+    }
+
+    button {
+        padding: 10px !important;
+        /* Tăng padding cho button */
+        font-size: 16px !important;
+        /* Giảm kích thước font chữ cho button */
+    }
+
+    p {
+        font-size: 14px !important;
+        /* Giảm kích thước font cho văn bản */
+    }
+}
+
+/* Responsive cho các màn hình nhỏ hơn 640px */
+@media screen and (max-width: 640px) {
+    form {
+        width: 80% !important;
+        /* Điều chỉnh độ rộng form */
+        height: auto !important;
+        /* Không cố định chiều cao */
+    }
+
+    h3 {
+        font-size: 20px !important;
+        /* Giảm kích thước font chữ tiêu đề */
+    }
+
+    input {
+        height: 35px !important;
+        /* Điều chỉnh chiều cao của input */
+        font-size: 14px !important;
+        /* Giảm kích thước font chữ trong input */
+    }
+
+    input::placeholder {
+        font-size: 12px !important;
+        /* Giảm kích thước font cho placeholder */
+    }
+
+    button {
+        padding: 8px !important;
+        /* Tăng padding cho button */
+        font-size: 15px !important;
+        /* Giảm kích thước font chữ cho button */
+    }
+
+    p {
+        font-size: 12px !important;
+        /* Giảm kích thước font cho văn bản */
+    }
+}

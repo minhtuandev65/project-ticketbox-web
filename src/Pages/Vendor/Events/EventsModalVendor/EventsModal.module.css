@@ -1,0 +1,164 @@
+.container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 20px !important;
+}
+
+.card {
+    width: 100% !important;
+    max-width: 600px !important;
+    background: #fff !important;
+    padding: 24px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.header {
+    text-align: center !important;
+    margin-bottom: 24px !important;
+}
+
+.avatar {
+    margin-bottom: 16px !important;
+}
+
+.text-responsive {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+
+.textResponsive {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    font-size: 14px !important;
+    color: gray !important;
+    margin-top: 4px !important;
+}
+
+.btn-profile {
+    margin-top: 12px !important;
+    background-color: #000 !important;
+    color: #fff !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    border: none !important;
+    padding: 0 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-profile:hover {
+    outline: 2px solid #000 !important;
+    background: #fff !important;
+    color: #000 !important;
+    font-weight: 1000 !important;
+}
+
+.tag {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    padding: 6px 12px !important;
+    border-radius: 10px !important;
+    text-transform: uppercase !important;
+}
+
+.responsiveModal :global(.ant-modal) {
+    max-width: 95vw;
+}
+
+@media screen and (max-width: 768px) {
+    .text-responsive {
+        font-size: 14px !important;
+    }
+
+    .textResponsive {
+        max-width: 200px !important;
+        font-size: 13px !important;
+    }
+
+    .input-responsive {
+        width: 100% !important;
+        font-size: 13px !important;
+    }
+
+    .btn-profile {
+        font-size: 13px !important;
+        height: 38px !important;
+    }
+
+    .responsiveModal :global(.ant-modal) {
+        padding: 8px !important;
+    }
+
+    .responsiveModal :global(.ant-modal-content) {
+        padding: 12px !important;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .text-responsive {
+        font-size: 12px !important;
+    }
+
+    .textResponsive {
+        max-width: 120px !important;
+        font-size: 12px !important;
+    }
+
+    .input-responsive {
+        width: 100% !important;
+        font-size: 12px !important;
+    }
+
+    .btn-profile {
+        font-size: 12px !important;
+        height: 35px !important;
+    }
+
+    .responsiveModal :global(.ant-modal) {
+        padding: 6px !important;
+    }
+
+    .responsiveModal :global(.ant-modal-content) {
+        padding: 10px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .text-responsive {
+        font-size: 12px !important;
+    }
+
+    .textResponsive {
+        max-width: 120px !important;
+        font-size: 12px !important;
+    }
+
+    .input-responsive {
+        width: 100% !important;
+        font-size: 12px !important;
+    }
+
+    .btn-profile {
+        font-size: 8px !important;
+        height: 35px !important;
+    }
+
+    .formResponsive {
+        margin: 10px !important;
+    }
+
+    .responsiveModal :global(.ant-modal) {
+        padding: 4px !important;
+    }
+
+    .responsiveModal :global(.ant-modal-content) {
+        padding: 8px !important;
+    }
+}

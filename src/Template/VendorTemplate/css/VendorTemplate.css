@@ -1,0 +1,36 @@
+@media (max-width: 480px) {
+    .hideSider {
+        transform: translateX(-100%) !important;
+        transition: transform 0.3s ease !important;
+        position: absolute !important;
+        z-index: 999 !important;
+        height: 100% !important;
+    }
+
+    .siderOverlay {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: rgba(255, 255, 255, 0.3);
+        z-index: 998;
+    }
+
+    Content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    ._container_rxnc1_1 {
+        padding: 0 !important;
+    }
+}
+/* Trong file CSS global hoặc component */
+.ant-tooltip-inner {
+    background-color: #ffffff !important;
+}
+
+.ant-tooltip-arrow::before {
+    background-color: #000000 !important;
+}
