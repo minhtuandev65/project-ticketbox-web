@@ -33,7 +33,6 @@ function EventsModalVendor({ open, onCancel, onSubmit }) {
     form.resetFields();
     message.success("Tạo sự kiện thành công!");
   };
-
   return (
     <Modal
       title="Tạo sự kiện mới"
@@ -111,6 +110,7 @@ function EventsModalVendor({ open, onCancel, onSubmit }) {
         >
           <Input placeholder="Nhập thành phố" />
         </Form.Item>
+
         <Row gutter={16}>
           <Col xs={24} md={12}>
             <Form.Item

@@ -8,7 +8,6 @@ import { ManageRevenueReducer } from "./reducer/AdminReducer/ManageRevenueReduce
 import { ManageUserReducer } from "./reducer/AdminReducer/ManageUserReducer/ManageUserReducer";
 import { ManageEventsVendorReducer } from "./reducer/VendorReducer/ManageEventsReducer/ManageEventsReducer";
 import { ManageEventsHotVendorReducer } from "./reducer/VendorReducer/ManageEventsHotReducer/ManageEventsHotReducer";
-import { ManageEventsShowVendorReducer } from "./reducer/VendorReducer/ManageEventsShowReducer/ManageEventsShowReducer";
 import { ManageRatingsVendorReducer } from "./reducer/VendorReducer/ManageRatingsReducer/ManageRatingsReducer";
 import { ManageTicketsVendorReducer } from "./reducer/VendorReducer/ManageTIcketsReducer/ManageTIcketsReducer";
 import { ManageEventsBuyerReducer } from "./reducer/BuyerReducer/ManageEventsReducer/ManageEventsReducer";
@@ -30,7 +29,6 @@ const rootReducer = combineReducers({
   // Vendor services
   ManageEventsVendorReducer,
   ManageEventsHotVendorReducer,
-  ManageEventsShowVendorReducer,
   ManageRatingsVendorReducer,
   ManageTicketsVendorReducer,
   ManageOrganizationVendorReducer,

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, Layout, Menu, Table, Tooltip } from "antd";
-import HeaderVendor from "./HeaderVendor/HeaderVendor";
+import HeaderAdmin from "./HeaderAdmin/HeaderAdmin";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { CalendarOutlined } from "@ant-design/icons";
-import FooterVendor from "./FooterVendor/FooterVendor";
-import "./css/VendorTemplate.css";
+import "./css/AdminTemplate.css";
 const { Sider, Content } = Layout;
 
-function VendorTemplate() {
+function AdminTemplate() {
   const [collapsed, setCollapsed] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const location = useLocation();
@@ -29,12 +28,11 @@ function VendorTemplate() {
 
   const columns = [];
   const filteredList = [];
-  const isDashboardRoot = location.pathname === "/vendor";
+  const isDashboardRoot = location.pathname === "/admin";
   const getSelectedKey = () => {
-    const defaultPath = "/vendor";
-    if (location.pathname.startsWith(`${defaultPath}/organization`)) return "2";
-    if (location.pathname.startsWith(`${defaultPath}/events-hot`)) return "1";
-    if (location.pathname.startsWith(`${defaultPath}/events`)) return "3";
+    const defaultPath = "/admin";
+    if (location.pathname.startsWith(`${defaultPath}/hot`)) return "2";
+    if (location.pathname.startsWith(`${defaultPath}/events`)) return "1";
     return "";
   };
 
@@ -42,13 +40,13 @@ function VendorTemplate() {
     {
       key: "1",
       icon: (
-        <Tooltip title="Xem sự kiện hot" className="ant-tooltip-inner">
+        <Tooltip title="Xem danh sự kiện" className="ant-tooltip-inner">
           <CalendarOutlined />
         </Tooltip>
       ),
       label: (
         <Link
-          to="/vendor/events-hot"
+          to="/admin/events"
           style={{ textDecoration: "none", color: "#000" }}
         >
           Danh sách sự kiện hot
@@ -58,32 +56,13 @@ function VendorTemplate() {
     {
       key: "2",
       icon: (
-        <Tooltip title="Tạo mới tổ chức" className="ant-tooltip-inner">
+        <Tooltip title="Danh sách sự kiện nóng" className="ant-tooltip-inner">
           <CalendarOutlined />
         </Tooltip>
       ),
       label: (
-        <Link
-          to="/vendor/organization"
-          style={{ textDecoration: "none", color: "#000" }}
-        >
-          Tạo tổ chức
-        </Link>
-      ),
-    },
-    {
-      key: "3",
-      icon: (
-        <Tooltip title="Danh sách sự kiện" className="ant-tooltip-inner">
-          <CalendarOutlined />
-        </Tooltip>
-      ),
-      label: (
-        <Link
-          to="/vendor/events"
-          style={{ textDecoration: "none", color: "#000" }}
-        >
-          Danh sách sự kiện
+        <Link to="/admin/hot" style={{ textDecoration: "none", color: "#000" }}>
+          Xem sự kiện nóng
         </Link>
       ),
     },
@@ -117,15 +96,15 @@ function VendorTemplate() {
             style={{ marginTop: 50 }}
             theme="light"
             mode="inline"
-            items={menuItems}
             selectedKeys={[getSelectedKey()]}
+            items={menuItems}
             onClick={() => setCollapsed(true)}
           />
         </Drawer>
       )}
 
       <Layout>
-        <HeaderVendor collapsed={collapsed} setCollapsed={setCollapsed} />
+        <HeaderAdmin collapsed={collapsed} setCollapsed={setCollapsed} />
 
         <Content
           style={{
@@ -146,10 +125,9 @@ function VendorTemplate() {
             <Outlet />
           )}
         </Content>
-        <FooterVendor />
       </Layout>
     </Layout>
   );
 }
 
-export default VendorTemplate;
+export default AdminTemplate;

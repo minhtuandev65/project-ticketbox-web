@@ -32,7 +32,7 @@ export default function EventDetailPage() {
   const { detailEvent } = useSelector(
     (state) => state.ManageEventsVendorReducer
   );
-  console.log("Reducer", detailEvent);
+
   const {
     title,
     description,
@@ -179,7 +179,7 @@ export default function EventDetailPage() {
               <b>Tổ chức:</b> {organization?.name}{" "}
             </Text>
             <Text>
-              <b>Trạng thái:</b>
+              <b>Trạng thái tổ chức:</b>
               <Tag
                 color={
                   organization?.status === "APPROVED"

@@ -23,6 +23,7 @@ export const approveEventAction = (eventId) => {
       });
       // Lấy lại danh sách sự kiện sau khi duyệt
       dispatch(getListEventsAllAction(1000));
+      dispatch(getListDetailEventsAction(eventId));
       dispatch(hideLoadingAction);
       message.success("Duyệt sự kiện thành công!");
     } catch (error) {
@@ -42,6 +43,7 @@ export const rejectEventAction = (eventId) => {
       });
       // Lấy lại danh sách sự kiện sau khi từ chối
       dispatch(getListEventsAllAction(1000));
+      dispatch(getListDetailEventsAction(eventId));
       dispatch(hideLoadingAction);
       message.success("Từ chối sự kiện thành công!");
     } catch (error) {
@@ -57,7 +59,7 @@ export const getListEventsAllAction = (limit) => {
       const result = await manageEventsAdmin.getListEventsAll(limit);
       dispatch({
         type: SET_LIST_EVENTS_ALL,
-        payload: result.data,
+        payload: result.data.data.data,
       });
       dispatch(hideLoadingAction);
     } catch (error) {
@@ -73,7 +75,7 @@ export const getListEventsHotAction = () => {
       const result = await manageEventsAdmin.getListEventsHot();
       dispatch({
         type: SET_LIST_EVENTS_HOT,
-        payload: result.data,
+        payload: result.data.data,
       });
       dispatch(hideLoadingAction);
     } catch (error) {
@@ -89,7 +91,7 @@ export const getListDetailEventsAction = (eventId) => {
       const result = await manageEventsAdmin.getListDetailEvents(eventId);
       dispatch({
         type: SET_LIST_DETAIL_EVENTS,
-        payload: result.data,
+        payload: result.data.data,
       });
       dispatch(hideLoadingAction);
     } catch (error) {

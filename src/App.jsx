@@ -23,12 +23,19 @@ import AccountVerification from "./Pages/VerifyEmail/AccountVerification";
 // Lấy lại mật khẩu
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ChangeYourPassword from "./Pages/ChangeYourPassword/ChangeYourPassword";
+// Import Myprofile
+import MyProfile from "./Pages/MyProfile/MyProfile";
+// Import vendor
 import VendorTemplate from "./Template/VendorTemplate/VendorTemplate";
 import EventsHotVendor from "./Pages/Vendor/EventsHot/EventsHotVendor";
-import MyProfile from "./Pages/MyProfile/MyProfile";
 import OrganizationVendor from "./Pages/Vendor/Organization/Organizationpage/OrganizationVendor";
 import EventsVendor from "./Pages/Vendor/Events/EventsPage/EventsVendor";
 import EventDetailPage from "./Pages/Vendor/Events/EventDetailPage/EventDetailPage";
+// Import Admin
+import AdminTemplate from "./Template/AdminTemplate/AdminTemplate";
+import ManageEventsAdminPage from "./Pages/Admin/ManageEventsAdmin/ManageEventsAdminPage/ManageEventsAdminPage";
+import ManageEventsHotAdminPage from "./Pages/Admin/ManageEventsHotAdmin/ManageEventsHotAdminPage/ManageEventsHotAdminPage";
+import ManageEventDetailAdminPage from "./Pages/Admin/ManageEventsAdmin/ManageEventsDetailAdminPage/ManageEventsDetailAdminPage";
 // Vendor page
 function AppEffects() {
   const navigate = useNavigate();
@@ -69,7 +76,16 @@ function App() {
             <Route path="forgot_password" element={<ChangeYourPassword />} />
           </Route>
           {/* Admin services */}
-
+          <Route path="/admin" element={<AdminTemplate />}>
+            <Route index element={<ManageEventsAdminPage />} />
+            <Route path="events" element={<ManageEventsAdminPage />} />
+            <Route path="info" element={<MyProfile />} />
+            <Route path="hot" element={<ManageEventsHotAdminPage />} />
+            <Route
+              path="detail/:eventId"
+              element={<ManageEventDetailAdminPage />}
+            />
+          </Route>
           {/* Vendor services */}
           <Route path="/vendor" element={<VendorTemplate />}>
             <Route index element={<EventsHotVendor />} />
@@ -77,7 +93,10 @@ function App() {
             <Route path="info" element={<MyProfile />} />
             <Route path="organization" element={<OrganizationVendor />} />
             <Route path="events" element={<EventsVendor />} />
-            <Route path="events/detail/:eventId" element={<EventDetailPage />} />
+            <Route
+              path="events/detail/:eventId"
+              element={<EventDetailPage />}
+            />
           </Route>
           {/* Buyer services */}
 

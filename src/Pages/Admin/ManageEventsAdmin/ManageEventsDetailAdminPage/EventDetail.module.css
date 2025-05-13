@@ -1,0 +1,55 @@
+.container {
+    padding: 24px;
+}
+
+.bannerImage {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 16px;
+    border-radius: 12px;
+}
+
+.section {
+    margin-bottom: 24px;
+}
+
+.tagGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.actionButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.infoTextGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.ticketTableWrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+  
+@media screen and (max-width: 768px) {
+    .tagGroup {
+        flex-direction: column;
+    }
+
+    .actionButtons {
+        flex-direction: column;
+    }
+
+    .infoTextGroup {
+        gap: 12px;
+    }
+
+    .bannerImage {
+        max-height: 250px;
+    }
+}

@@ -1,0 +1,47 @@
+.titleTruncate {
+    color: white !important;
+    font-weight: 800 !important;
+    margin-top: 2px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 100px !important;
+}
+
+.emailTruncate {
+    display: none !important;
+    margin-right: 5px !important;
+}
+
+@media (min-width: 480px) {
+    .emailTruncate {
+        display: inline-block !important;
+        max-width: 100px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        color: white !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .titleTruncate {
+        max-width: 200px !important;
+    }
+
+    .emailTruncate {
+        max-width: 150px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .titleTruncate {
+        max-width: 300px !important;
+    }
+
+    .emailTruncate {
+        max-width: 200px !important;
+        margin-left: 10px !important;
+    }
+}

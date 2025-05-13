@@ -6,7 +6,6 @@ import {
 
 const initialState = {
   listEvents: [],
-  listDetailEvents: [],
   detailEvent: {},
 };
 
@@ -16,13 +15,6 @@ export const ManageEventsVendorReducer = (state = initialState, action) => {
       return {
         ...state,
         listEvents: action.payload,
-      };
-    }
-
-    case SET_LIST_DETAIL_EVENTS: {
-      return {
-        ...state,
-        listDetailEvents: action.payload,
       };
     }
     case SET_ONE_DETAIL_EVENT: {

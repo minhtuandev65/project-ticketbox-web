@@ -28,31 +28,12 @@ export const getListEventsAction = () => {
     }
   };
 };
-// Lay chi tiết sự kiện
-export const getListDetailEventsAction = (eventId) => {
-  return async (dispatch) => {
-    try {
-      dispatch(displayLoadingAction);
-      const result = await manageEventsVendor.getListDetailEvents(eventId);
-
-      dispatch({
-        type: SET_LIST_DETAIL_EVENTS,
-        payload: result.data,
-      });
-      dispatch(hideLoadingAction);
-    } catch (error) {
-      dispatch(hideLoadingAction);
-      message.error("Lấy danh sách chi tiết sự kiện thất bại!", error);
-    }
-  };
-};
 // Lấy chi tiết một sự kiện của vendor
 export const getOneDetailEventAction = (eventId) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
       const result = await manageEventsVendor.getOneDetailEvent(eventId);
-      console.log("Action", eventId);
       dispatch({
         type: SET_ONE_DETAIL_EVENT,
         payload: result.data.data,

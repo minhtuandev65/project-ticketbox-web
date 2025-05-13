@@ -1,0 +1,5 @@
+.titleTruncate {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
