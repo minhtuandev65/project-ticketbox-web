@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN, TOKEN } from "../../utils/Setting/Config";
+import { DOMAIN, TOKEN } from "../../Utils/Setting/Config";
 
 const apiClient = axios.create({
   baseURL: DOMAIN,
