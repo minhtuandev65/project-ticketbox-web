@@ -28,12 +28,13 @@ export const getListEventsAction = () => {
     }
   };
 };
-// Lay danh sách chi tiết sự kiện
+// Lay chi tiết sự kiện
 export const getListDetailEventsAction = (eventId) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
       const result = await manageEventsVendor.getListDetailEvents(eventId);
+
       dispatch({
         type: SET_LIST_DETAIL_EVENTS,
         payload: result.data,
@@ -45,15 +46,16 @@ export const getListDetailEventsAction = (eventId) => {
     }
   };
 };
-// Lấy chi tiết một sự kiện
+// Lấy chi tiết một sự kiện của vendor
 export const getOneDetailEventAction = (eventId) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
       const result = await manageEventsVendor.getOneDetailEvent(eventId);
+      console.log("Action", eventId);
       dispatch({
         type: SET_ONE_DETAIL_EVENT,
-        payload: result.data,
+        payload: result.data.data,
       });
       dispatch(hideLoadingAction);
     } catch (error) {

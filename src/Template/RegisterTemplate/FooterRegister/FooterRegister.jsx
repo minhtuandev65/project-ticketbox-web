@@ -8,7 +8,7 @@ const { Title } = Typography;
 
 function FooterRegister() {
   return (
-    <Footer className="footer">
+    <Footer className="footerRegister">
       <div className="footer-content">
         {/* Phần bên trái */}
         <div className="left-section">

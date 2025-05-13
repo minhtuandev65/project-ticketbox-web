@@ -20,7 +20,7 @@ import {
 } from "../../Redux/actions/ManageUsersAction/ManageUsersAction";
 import styles from "./MyProfile.module.css";
 import { createOrganizationAction } from "../../Redux/actions/VendorActions/ManageOrganizationAction/ManageOrganizationAction";
-import OrganizationModalVendor from "../Vendor/Organization/OrganizationModalVendor";
+import OrganizationModalVendor from "../Vendor/Organization/OrganizationModal/OrganizationModalVendor";
 import { useLocation } from "react-router-dom";
 const { Title, Text } = Typography;
 

@@ -1,12 +1,12 @@
 /* Footer Style */
-.footer {
+.footerLogin {
     background: #1a1a1a !important;
-    padding: 40px 100px !important;
+    padding: 40px 0px !important;
     border-top: 1px solid #333333 !important;
     margin-top: auto !important;
     position: relative !important;
     bottom: 0 !important;
-    width: 100vw !important;
+    width: 100% !important;
 }
 
 .footer-content {
@@ -14,6 +14,7 @@
     justify-content: space-between !important;
     align-items: flex-start !important;
     gap: 40px !important;
+    padding: 0px 120px !important;
 }
 
 /* Logo and Text */

@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Typography } from "antd";
+import { Button, Popconfirm, Table, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  cancelEventAction,
   createEventsAction,
   getListEventsAction,
+  updateEventAction,
 } from "../../../../Redux/actions/VendorActions/ManageEventsAction/ManageEventsAction";
 import dayjs from "dayjs";
-import { getUserInfoAction } from "../../../../Redux/actions/ManageUsersAction/ManageUsersAction";
 import { PlusOutlined } from "@ant-design/icons";
 import EventsModalVendor from "../EventsModalVendor/EventsModalVendor";
 const { Title } = Typography;
 import "./events.css";
+import EventsModalUpdateVendor from "../EventModalUpdate/EventModalUpdate";
+import { useNavigate } from "react-router-dom";
 function EventsVendor() {
   const dispatch = useDispatch();
   const { listEvents } = useSelector(
     (state) => state.ManageEventsVendorReducer
   );
-  const { userProfile } = useSelector((state) => state.ManageUsersReducer);
   const [openModal, setOpenModal] = useState(false);
-  useEffect(() => {
-    // Nếu chưa có thông tin user thì gọi lại API
-    if (!userProfile || Object.keys(userProfile).length === 0) {
-      dispatch(getUserInfoAction());
-    }
-  }, [dispatch, userProfile]);
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getListEventsAction());
   }, [dispatch]);
@@ -32,7 +31,16 @@ function EventsVendor() {
     dispatch(createEventsAction(formData));
     setOpenModal(false);
   };
-
+  const handleCancelEvent = async (eventId) => {
+    await dispatch(cancelEventAction(eventId));
+  };
+  const handleUpdateEvent = async (formData) => {
+    if (selectedEvent?._id) {
+      await dispatch(updateEventAction(selectedEvent._id, formData));
+      setOpenUpdateModal(false);
+      setSelectedEvent(null);
+    }
+  };
   const columns = [
     {
       title: "STT",
@@ -112,6 +120,59 @@ function EventsVendor() {
         return <span style={{ color, fontWeight: 600 }}>{status}</span>;
       },
     },
+    {
+      title: "Hành động",
+      key: "actions",
+      render: (_, record) => (
+        <div style={{ display: "flex", gap: 8 }}>
+          <Button
+            type="primary"
+            size="small"
+            onClick={() => {
+              setSelectedEvent(record);
+              setOpenUpdateModal(true);
+            }}
+          >
+            Sửa
+          </Button>
+          <Popconfirm
+            title="Bạn có chắc muốn hủy sự kiện này?"
+            onConfirm={() => handleCancelEvent(record._id)}
+            okText="Đồng ý"
+            cancelText="Hủy"
+            disabled={record.status === "CANCELLED"}
+          >
+            <Button
+              danger
+              size="small"
+              disabled={record.status === "CANCELLED"}
+            >
+              Hủy
+            </Button>
+          </Popconfirm>
+        </div>
+      ),
+      fixed: "right",
+      width: 120,
+    },
+    {
+      title: "Chi tiết",
+
+      key: "detail",
+      render: (_, record) => (
+        <Button
+          className="btn-event"
+          size="small"
+          onClick={() => {
+            navigate(`/vendor/events/detail/${record._id}`);
+          }}
+        >
+          Xem chi tiết
+        </Button>
+      ),
+      fixed: "right",
+      width: 120,
+    },
   ];
 
   return (
@@ -151,6 +212,15 @@ function EventsVendor() {
         open={openModal}
         onCancel={() => setOpenModal(false)}
         onSubmit={handleCreateEvent}
+      />
+      <EventsModalUpdateVendor
+        open={openUpdateModal}
+        onCancel={() => {
+          setOpenUpdateModal(false);
+          setSelectedEvent(null);
+        }}
+        onSubmit={handleUpdateEvent}
+        initialValues={selectedEvent}
       />
     </div>
   );

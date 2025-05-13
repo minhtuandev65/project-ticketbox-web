@@ -32,13 +32,13 @@ export default function LoginPage() {
   return (
     <div
       style={{
-        width: "100vw",
+        width: "100%",
         height: "100vh",
         background: "linear-gradient(to right, #eafbf2, #d2f4e1)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: 20,
+        // padding: 20,
       }}
     >
       <form

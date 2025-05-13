@@ -12,11 +12,11 @@ export class ManageEventsVendor extends BaseService {
   };
   //   Chỉnh sửa sự kiện
   updateEvent = (eventId, data) => {
-    return apiClient.put(`api/events/${eventId}`, data, {});
+    return apiClient.put(`api/events/${eventId}/update`, data, {});
   };
   //   hủy sự kiện
   cancelEvent = (eventId) => {
-    return apiClient.put(`api/events/vendor/${eventId}/cancel`, {});
+    return apiClient.put(`api/events/${eventId}/vendor/cancel`, {});
   };
   //   Lấy danh sách sự kiện chi tiết
   getListDetailEvents = (eventId) => {

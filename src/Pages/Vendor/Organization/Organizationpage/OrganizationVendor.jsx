@@ -5,9 +5,9 @@ import dayjs from "dayjs";
 
 import styles from "./Organization.module.css";
 import { createOrganizationAction } from "../../../../Redux/actions/VendorActions/ManageOrganizationAction/ManageOrganizationAction";
-import OrganizationModalVendor from "../OrganizationModalVendor";
+import OrganizationModalVendor from "../OrganizationModal/OrganizationModalVendor";
 import { getMyOrganizationAction } from "../../../../Redux/actions/VendorActions/ManageOrganizationAction/ManageOrganizationAction";
-import { getUserInfoAction } from "../../../../Redux/actions/ManageUsersAction/ManageUsersAction";
+
 const { Title, Text } = Typography;
 
 export default function OrganizationVendor() {
@@ -18,12 +18,7 @@ export default function OrganizationVendor() {
   );
   const isOrgApproved = organization?.status === "APPROVED";
   const [isOrgModalVisible, setIsOrgModalVisible] = useState(false);
-  useEffect(() => {
-    // Nếu chưa có thông tin user thì gọi lại API
-    if (!userProfile || Object.keys(userProfile).length === 0) {
-      dispatch(getUserInfoAction());
-    }
-  }, [dispatch, userProfile]);
+
   useEffect(() => {
     if (userProfile?._id) {
       dispatch(getMyOrganizationAction(userProfile._id));
@@ -115,10 +110,9 @@ export default function OrganizationVendor() {
                 </Form.Item>
                 <Form.Item label="Ngày tham gia">
                   <Input
-                    value={dayjs(organization.createdAt).format("DD/MM/YYYY") }
+                    value={dayjs(organization.createdAt).format("DD/MM/YYYY")}
                     disabled
                     className={styles.textResponsive}
-                    
                   />
                 </Form.Item>
               </Form>

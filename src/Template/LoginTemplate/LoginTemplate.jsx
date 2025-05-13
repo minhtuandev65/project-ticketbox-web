@@ -10,6 +10,7 @@ function LoginTemplate() {
         flexDirection: "column",
         minHeight: "100vh", // Chiều cao tối thiểu toàn màn hình
         background: "linear-gradient(to right, #eafbf2, #d2f4e1)",
+        width: "100%",
       }}
     >
       <HeaderLogin />

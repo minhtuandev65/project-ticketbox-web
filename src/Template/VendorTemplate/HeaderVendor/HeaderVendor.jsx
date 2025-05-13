@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout, Typography, Avatar, Dropdown, Button } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { manageUsersService } from "../../../Services/ManageUsersService/ManageU
 import { SET_USER_LOGIN } from "../../../Redux/type/UsersType/UsersType";
 const { Header } = Layout;
 import styles from "./HeaderVendor.module.css";
+import { getUserInfoAction } from "../../../Redux/actions/ManageUsersAction/ManageUsersAction";
 const getProfilePath = (roles = []) => {
   if (roles.includes("ADMIN")) return "/admin/info";
   if (roles.includes("VENDOR")) return "/vendor/info";
@@ -16,7 +17,12 @@ function HeaderVandor({ collapsed, setCollapsed }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userProfile } = useSelector((state) => state.ManageUsersReducer);
-
+  useEffect(() => {
+    // Nếu chưa có thông tin user thì gọi lại API
+    if (!userProfile || Object.keys(userProfile).length === 0) {
+      dispatch(getUserInfoAction());
+    }
+  }, [dispatch, userProfile]);
   const handleLogout = async () => {
     localStorage.removeItem("USER_LOGIN");
     localStorage.removeItem("ACCESS_TOKEN");
@@ -46,7 +52,7 @@ function HeaderVandor({ collapsed, setCollapsed }) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "0 20px",
+        padding: "0 50px",
         background: "#000000",
         boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
         height: 64,
@@ -62,7 +68,7 @@ function HeaderVandor({ collapsed, setCollapsed }) {
             fontSize: 20,
             color: "black",
             backgroundColor: "white",
-            marginRight: 5,
+            marginRight: 10,
           }}
         />
       </div>
@@ -92,9 +98,10 @@ function HeaderVandor({ collapsed, setCollapsed }) {
             Xin chào, {userProfile.displayName}
           </Typography.Text>
           <Dropdown menu={{ items: menuItems }} placement="bottomRight">
-            <Avatar src={userProfile.avatar} style={{ cursor: "pointer" }}>
-             
-            </Avatar>
+            <Avatar
+              src={userProfile.avatar}
+              style={{ cursor: "pointer", marginLeft: 5, marginBottom: 15 }}
+            ></Avatar>
           </Dropdown>
         </div>
       ) : (

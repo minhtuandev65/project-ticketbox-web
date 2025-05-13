@@ -9,17 +9,7 @@ const { Header } = Layout;
 function HeaderLogin() {
   return (
     <Layout>
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          width: "100vw",
-          justifyContent: "space-between",
-          padding: "0 120px", // ✅ nhỏ hơn 250px để tránh chật ở 1024px
-          background: "#000000",
-          height: "80px",
-        }}
-      >
+      <Header className="header">
         {/* Logo */}
         <Link to="/home" style={{ textDecoration: "none" }}>
           <img src={logo} alt="logo" style={{ width: "200px" }} />

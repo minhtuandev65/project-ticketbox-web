@@ -1,0 +1,60 @@
+.btn-showing {
+    margin-top: 12px !important;
+    background-color: #000 !important;
+    color: #fff !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    border: none !important;
+    padding: 0 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-showing:hover {
+    outline: 2px solid #000 !important;
+    background: #fff !important;
+    color: #000 !important;
+    font-weight: 1000 !important;
+}
+
+/* EventModalShowing.module.css */
+
+.modal-content {
+    padding: 24px;
+}
+
+/* Responsive cho mobile */
+/* EventModalShowing.css */
+
+/* Responsive for mobile screen */
+@media screen and (max-width: 768px) {
+    .ant-modal {
+        padding: 0 !important;
+    }
+
+    .ant-modal-content {
+        padding: 12px !important;
+    }
+
+    .ant-row {
+        flex-direction: column !important;
+    }
+
+    .ant-col {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .ant-form-item {
+        margin-bottom: 12px !important;
+    }
+
+    .ant-btn {
+        width: 100%;
+    }
+
+    .ticket-block {
+        padding: 12px !important;
+    }
+}

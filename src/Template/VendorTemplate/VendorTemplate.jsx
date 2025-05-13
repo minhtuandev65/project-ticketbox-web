@@ -14,7 +14,7 @@ function VendorTemplate() {
 
   // 1. Xác định màn hình nhỏ
   useEffect(() => {
-    const checkScreen = () => setIsSmallScreen(window.innerWidth <= 480);
+    const checkScreen = () => setIsSmallScreen(window.innerWidth <= 768);
     checkScreen();
     window.addEventListener("resize", checkScreen);
     return () => window.removeEventListener("resize", checkScreen);

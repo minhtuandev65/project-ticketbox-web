@@ -1,0 +1,87 @@
+.event-detail-container {
+    padding: 24px;
+}
+
+.btn-detail {
+    margin-top: 12px !important;
+    background-color: #000 !important;
+    color: #fff !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    border: none !important;
+    padding: 0 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-detail:hover {
+    outline: 2px solid #000 !important;
+    background: #fff !important;
+    color: #000 !important;
+    font-weight: 1000 !important;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .event-detail-container {
+        padding: 12px;
+    }
+
+    .btn-profile {
+        font-size: 13px !important;
+        height: 38px !important;
+    }
+
+    /* Tự động xuống dòng các text trong <Space wrap> */
+    .ant-typography,
+    .ant-space {
+        display: block !important;
+        width: 100%;
+    }
+
+    .ant-space-item {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .ant-image,
+    .ant-image-img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .ant-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .ant-table {
+        min-width: 600px;
+    }
+
+    /* Tiêu đề */
+    .ant-typography h2 {
+        font-size: 20px;
+    }
+
+    .ant-typography h4 {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+
+    .btn-profile {
+        font-size: 12px !important;
+        height: 36px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .btn-profile {
+        font-size: 11px !important;
+        height: 34px !important;
+    }
+
+}

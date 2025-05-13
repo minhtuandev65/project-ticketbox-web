@@ -11,6 +11,7 @@
 
 .emailTruncate {
     display: none !important;
+    margin-right: 5px !important;
 }
 
 @media (min-width: 480px) {
@@ -41,5 +42,6 @@
 
     .emailTruncate {
         max-width: 200px !important;
+        margin-left: 10px !important;
     }
 }

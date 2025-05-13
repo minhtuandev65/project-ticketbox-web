@@ -28,6 +28,7 @@ import EventsHotVendor from "./Pages/Vendor/EventsHot/EventsHotVendor";
 import MyProfile from "./Pages/MyProfile/MyProfile";
 import OrganizationVendor from "./Pages/Vendor/Organization/Organizationpage/OrganizationVendor";
 import EventsVendor from "./Pages/Vendor/Events/EventsPage/EventsVendor";
+import EventDetailPage from "./Pages/Vendor/Events/EventDetailPage/EventDetailPage";
 // Vendor page
 function AppEffects() {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ function App() {
             <Route path="info" element={<MyProfile />} />
             <Route path="organization" element={<OrganizationVendor />} />
             <Route path="events" element={<EventsVendor />} />
+            <Route path="events/detail/:eventId" element={<EventDetailPage />} />
           </Route>
           {/* Buyer services */}
 

@@ -1,0 +1,55 @@
+/* EventsModal.module.css */
+
+.responsiveModal .ant-modal-content {
+    padding: 16px !important;
+}
+
+.formResponsive {
+    width: 100%;
+}
+
+.footerButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.btn-update {
+    margin-top: 12px !important;
+    background-color: #000 !important;
+    color: #fff !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    border: none !important;
+    padding: 0 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-update:hover {
+    outline: 2px solid #000 !important;
+    background: #fff !important;
+    color: #000 !important;
+    font-weight: 1000 !important;
+}
+
+/* Cho các breakpoint nhỏ */
+@media (max-width: 768px) {
+    .responsiveModal .ant-modal {
+        width: 95% !important;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .footerButtons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .footerButtons .ant-btn {
+        width: 100%;
+    }
+}
