@@ -15,7 +15,6 @@ import {
   hideLoadingAction,
 } from "../LoadingAction/LoadingAction";
 import { manageUsersService } from "../../../Services/ManageUsersService/ManageUsersService";
-import { USER_LOGIN } from "../../../utils/Setting/Config";
 
 // Action đăng nhập người dùng
 export const userLoginAction = (credentials, navigate) => {
@@ -32,7 +31,7 @@ export const userLoginAction = (credentials, navigate) => {
         loginPayload
       );
       localStorage.setItem(
-        USER_LOGIN,
+        "USER_LOGIN",
         JSON.stringify({ email: credentials.email, role })
       );
       dispatch({
