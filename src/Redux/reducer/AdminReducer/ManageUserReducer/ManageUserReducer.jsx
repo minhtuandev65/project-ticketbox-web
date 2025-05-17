@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   listAllUsers: [],
-  userDetail: {},
+  userDetail: [],
 };
 
 export const ManageUserReducer = (state = initialState, action) => {

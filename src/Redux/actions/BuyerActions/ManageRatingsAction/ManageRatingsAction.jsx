@@ -13,9 +13,10 @@ export const getListRatingAction = (eventId) => {
     try {
       dispatch(displayLoadingAction);
       const result = await manageRatingsBuyer.getListRating(eventId);
+      console.log(result);
       dispatch({
         type: SET_GET_LIST_RATING,
-        payload: result.data,
+        payload: result.data.data,
       });
       dispatch(hideLoadingAction);
     } catch (error) {
@@ -30,6 +31,7 @@ export const createRatingAction = (data) => {
       dispatch(displayLoadingAction);
       await manageRatingsBuyer.createRating(data);
       message.success("Tạo đánh giá thành công!");
+      dispatch(getListRatingAction());
       dispatch(hideLoadingAction);
     } catch (error) {
       message.error("Tạo đánh giá thất bại!", error);

@@ -46,7 +46,7 @@ export const userLoginAction = (credentials, navigate) => {
       } else if (role.includes("VENDOR")) {
         navigate("/vendor");
       } else {
-        navigate("/buyer/home");
+        navigate("/home");
       }
 
       dispatch(hideLoadingAction);

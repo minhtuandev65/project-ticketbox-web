@@ -15,5 +15,9 @@ export class ManageEventsBuyer extends BaseService {
   getListDetailEvents = (eventId) => {
     return apiClient.get(`api/events/${eventId}/detail`);
   };
+  // Lấy danh sách search
+  getCityCardList = (url) => {
+    return apiClient.get(url);
+  };
 }
 export const manageEventsBuyer = new ManageEventsBuyer();

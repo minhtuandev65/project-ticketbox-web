@@ -7,12 +7,12 @@ export class ManageOrganizationAdmin extends BaseService {
     return apiClient.get(`/api/organizations`);
   };
   // duyệt tổ chức
-  activateOrganization = (eventId) => {
-    return apiClient.put(`/api/organizations/${eventId}/activate`, {});
+  activateOrganization = (organizationId) => {
+    return apiClient.put(`/api/organizations/${organizationId}/activate`, {});
   };
   // từ chối tổ chức
-  rejectOrganization = (eventId) => {
-    return apiClient.put(`/api/organizations/${eventId}/reject`, {});
+  rejectOrganization = (organizationId) => {
+    return apiClient.put(`/api/organizations/${organizationId}/reject`, {});
   };
 }
 

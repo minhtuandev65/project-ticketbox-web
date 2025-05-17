@@ -27,12 +27,12 @@ export const getListOrganizationAction = () => {
   };
 };
 // Phê duyệt tổ chức action
-export const activateOrganizationAction = (eventId) => {
+export const activateOrganizationAction = (organizationId) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
       const result = await manageOrganizationAdmin.activateOrganization(
-        eventId
+        organizationId
       );
       dispatch({
         type: SET_ACTIVATE_ORGANIZATION,
@@ -48,11 +48,13 @@ export const activateOrganizationAction = (eventId) => {
   };
 };
 // Từ chối tổ chức action
-export const rejectOrganizationAction = (eventId) => {
+export const rejectOrganizationAction = (organizationId) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
-      const result = await manageOrganizationAdmin.rejectOrganization(eventId);
+      const result = await manageOrganizationAdmin.rejectOrganization(
+        organizationId
+      );
       dispatch({
         type: SET_REJECT_ORGANIZATION,
         payload: result.data,

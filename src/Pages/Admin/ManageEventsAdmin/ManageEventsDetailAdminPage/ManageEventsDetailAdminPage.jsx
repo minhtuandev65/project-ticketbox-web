@@ -10,6 +10,7 @@ import {
   Table,
   Space,
   Skeleton,
+  Descriptions,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -66,7 +67,23 @@ export default function ManageEventDetailAdminPage() {
       title: "Trạng thái",
       dataIndex: "status",
       key: "status",
-      render: (s) => <Tag color={s === "BOOK_NOW" ? "green" : "red"}>{s}</Tag>,
+      render: (status) => (
+        <Tag
+          color={
+            status === "BOOK_NOW"
+              ? "green"
+              : status === "SOLD_OUT"
+              ? "red"
+              : "default"
+          }
+        >
+          {status === "BOOK_NOW"
+            ? "Có thể đặt"
+            : status === "SOLD_OUT"
+            ? "Hết vé"
+            : "Ngừng đặt"}
+        </Tag>
+      ),
     },
     {
       title: "Bắt đầu",
@@ -162,32 +179,78 @@ export default function ManageEventDetailAdminPage() {
     <div className={styles.container}>
       <Row gutter={32}>
         <Col span={24}>
-          <Image src={bannerURL} alt={title} style={{ marginBottom: 16 }} />
-          <Title level={2}>{title}</Title>
-          <Paragraph>{description}</Paragraph>
+          <div style={{ textAlign: "center", marginBottom: 24 }}>
+            <Image
+              src={bannerURL}
+              alt={title}
+              style={{ borderRadius: 8, maxHeight: 400, objectFit: "cover" }}
+            />
+          </div>
+          <Title level={2}>
+            <b>Tên sự kiện: </b>
+            {title}
+          </Title>
+          <Descriptions
+            bordered
+            column={1}
+            size="middle"
+            style={{ marginBottom: 32 }}
+          >
+            <Descriptions.Item label="Mô tả">
+              <Paragraph
+                ellipsis={{
+                  rows: 3,
+                  expandable: true,
+                  symbol: "Xem thêm",
+                }}
+                style={{ marginBottom: 0 }}
+              >
+                {description}
+              </Paragraph>
+            </Descriptions.Item>
+          </Descriptions>
+          <Space style={{ marginBottom: 24 }}>
+            <Button
+              type="primary"
+              onClick={() => handleApprove(eventId)}
+              disabled={status === "APPROVED"}
+            >
+              Duyệt sự kiện
+            </Button>
+            <Button
+              danger
+              onClick={() => handleReject(eventId)}
+              disabled={status === "REJECTED"}
+            >
+              Từ chối sự kiện
+            </Button>
+          </Space>
 
-          <Space wrap size="large" style={{ marginBottom: 16 }}>
-            <Text>
-              <b>Ngày: </b> {dayjs(date).format("DD/MM/YYYY HH:mm")}
-            </Text>
-            <Text>
-              <b>Địa điểm: </b> {location}
-            </Text>
-            <Text>
-              <b>Giá vé: </b>{" "}
+          <Descriptions
+            bordered
+            column={{ xs: 1, sm: 1, md: 2 }}
+            size="middle"
+            title="Thông tin sự kiện"
+            style={{ marginBottom: 32 }}
+          >
+            <Descriptions.Item label="Ngày">
+              {dayjs(date).format("DD/MM/YYYY HH:mm")}
+            </Descriptions.Item>
+            <Descriptions.Item label="Thành phố">{city}</Descriptions.Item>
+            <Descriptions.Item label="Địa điểm">{location}</Descriptions.Item>
+            <Descriptions.Item label="Giá vé">
               {isFree ? "Miễn phí" : `${price?.toLocaleString()}₫`}
-            </Text>
-            <Text>
-              <b>Vé còn: </b> {availableTickets}/{totalTickets}
-            </Text>
-            <Text>
-              <b>Hot: </b> {isHot ? "Có" : "Không"}
-            </Text>
-            <Text>
-              <b>Cho phép đặt: </b> {isBookingAllowed ? "Có" : "Không"}
-            </Text>
-            <Text>
-              <b>Trạng thái sự kiện: </b>{" "}
+            </Descriptions.Item>
+            <Descriptions.Item label="Số vé còn lại">
+              {availableTickets}/{totalTickets}
+            </Descriptions.Item>
+            <Descriptions.Item label="Sự kiện được yêu thích">
+              {isHot ? "Có" : "Không"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Cho phép đặt vé">
+              {isBookingAllowed ? "Có" : "Không"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Trạng thái sự kiện">
               <Tag
                 color={
                   status === "APPROVED"
@@ -203,29 +266,26 @@ export default function ManageEventDetailAdminPage() {
                   ? "Chờ duyệt"
                   : "Bị từ chối"}
               </Tag>
-            </Text>
-            <div className={styles.actionButtons}>
-              <Button
-                type="primary"
-                danger
-                onClick={() => handleReject(eventId)}
-                style={{ minWidth: 120 }}
-              >
-                Từ chối sự kiện
-              </Button>
-              <Button type="primary" onClick={() => handleApprove(eventId)}>
-                Duyệt sự kiện
-              </Button>
-            </div>
+            </Descriptions.Item>
+            <Descriptions.Item label="Ngày tạo">
+              {dayjs(createdAt).format("DD/MM/YYYY")}
+            </Descriptions.Item>
+          </Descriptions>
 
-            <Text>
-              <b>Vendor: </b> {vendor?.email}
-            </Text>
-            <Text>
-              <b>Tên tổ chức: </b> {organization?.name}{" "}
-            </Text>
-            <Text>
-              <b>Trạng thái tổ chức: </b>
+          <Descriptions
+            bordered
+            column={{ xs: 1, sm: 1, md: 2 }}
+            size="middle"
+            title="Thông tin tổ chức"
+            style={{ marginBottom: 32 }}
+          >
+            <Descriptions.Item label="Người tạo sự kiện">
+              {vendor?.email}
+            </Descriptions.Item>
+            <Descriptions.Item label="Tên tổ chức">
+              {organization?.name}
+            </Descriptions.Item>
+            <Descriptions.Item label="Trạng thái tổ chức">
               <Tag
                 color={
                   organization?.status === "APPROVED"
@@ -241,15 +301,8 @@ export default function ManageEventDetailAdminPage() {
                   ? "Chờ duyệt"
                   : "Bị từ chối"}
               </Tag>
-            </Text>
-            <Text>
-              <b>Ngày tạo:</b> {dayjs(createdAt).format("DD/MM/YYYY")}
-            </Text>
-            <Text>
-              <b>Thành phố: </b>
-              {city}
-            </Text>
-          </Space>
+            </Descriptions.Item>
+          </Descriptions>
 
           {showings.length > 0 ? (
             <>
@@ -268,30 +321,50 @@ export default function ManageEventDetailAdminPage() {
                         dataSource={record.ticketTypes}
                         columns={[
                           {
-                            title: "Thứ hạng vé",
+                            title: "Loại vé",
                             dataIndex: "name",
                             key: "name",
                           },
                           {
-                            title: "Giá",
+                            title: "Giá vé",
                             dataIndex: "price",
                             key: "price",
-                            render: (v) => v.toLocaleString() + "₫",
+                            render: (v) =>
+                              typeof v === "number"
+                                ? v.toLocaleString() + "₫"
+                                : "Miễn phí",
                           },
                           {
-                            title: "Số tối thiểu",
+                            title: "Số lượng tối thiểu",
                             dataIndex: "minQtyPerOrder",
                             key: "minQtyPerOrder",
                           },
                           {
-                            title: "Số tối đa",
+                            title: "Số lượng tối đa",
                             dataIndex: "maxQtyPerOrder",
                             key: "maxQtyPerOrder",
                           },
                           {
-                            title: "Trạng thái",
+                            title: "Trạng thái vé",
                             dataIndex: "status",
                             key: "status",
+                            render: (status) => (
+                              <Tag
+                                color={
+                                  status === "BOOK_NOW"
+                                    ? "green"
+                                    : status === "SOLD_OUT"
+                                    ? "red"
+                                    : "default"
+                                }
+                              >
+                                {status === "BOOK_NOW"
+                                  ? "Có thể đặt"
+                                  : status === "SOLD_OUT"
+                                  ? "Hết vé"
+                                  : "Ngừng đặt"}
+                              </Tag>
+                            ),
                           },
                         ]}
                         rowKey="name"

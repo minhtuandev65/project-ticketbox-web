@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Avatar, Typography, Tag, Skeleton, Button } from "antd";
+import {
+  Form,
+  Input,
+  Avatar,
+  Typography,
+  Tag,
+  Skeleton,
+  Button,
+  Descriptions,
+} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 
@@ -78,10 +87,18 @@ export default function OrganizationVendor() {
                 <Form.Item label="Trạng thái">
                   <Tag
                     color={
-                      organization.status === "APPROVED" ? "green" : "orange"
+                      organization.status === "APPROVED"
+                        ? "green"
+                        : status === "PENDING"
+                        ? "orange"
+                        : "red"
                     }
                   >
-                    {organization.status}
+                    {organization.status === "APPROVED"
+                      ? "Đã duyệt"
+                      : organization.status === "PENDING"
+                      ? "Chờ duyệt"
+                      : "Bị từ chối"}
                   </Tag>
                 </Form.Item>
                 <Form.Item label="Email liên hệ">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Popconfirm, Table, Typography } from "antd";
+import { Button, Popconfirm, Table, Typography, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   cancelEventAction,
@@ -110,24 +110,38 @@ function EventsVendor() {
       title: "Trạng thái",
       dataIndex: "status",
       key: "status",
-      render: (status) => {
-        const color =
-          status === "APPROVED"
-            ? "green"
+      render: (status) => (
+        <Tag
+          color={
+            status === "APPROVED"
+              ? "green"
+              : status === "PENDING"
+              ? "orange"
+              : "red"
+          }
+        >
+          {status === "APPROVED"
+            ? "Đã duyệt"
             : status === "PENDING"
-            ? "orange"
-            : "red";
-        return <span style={{ color, fontWeight: 600 }}>{status}</span>;
-      },
+            ? "Chờ duyệt"
+            : "Bị từ chối"}
+        </Tag>
+      ),
     },
     {
       title: "Hành động",
       key: "actions",
       render: (_, record) => (
-        <div style={{ display: "flex", gap: 8 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+            maxWidth: 100,
+          }}
+        >
           <Button
             type="primary"
-            size="small"
             onClick={() => {
               setSelectedEvent(record);
               setOpenUpdateModal(true);
@@ -144,7 +158,6 @@ function EventsVendor() {
           >
             <Button
               danger
-              size="small"
               disabled={record.status === "CANCELLED"}
             >
               Hủy

@@ -18,9 +18,10 @@ export const getListAllUsersAction = () => {
     try {
       dispatch(displayLoadingAction);
       const result = await manageUserAdmin.getListAllUsers();
+      const user = result.data.users;
       dispatch({
         type: SET_GET_LIST_ALL_USERS,
-        payload: result.data,
+        payload: user,
       });
       dispatch(hideLoadingAction);
     } catch (error) {

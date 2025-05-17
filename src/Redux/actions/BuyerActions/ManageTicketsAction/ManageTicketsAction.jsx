@@ -1,7 +1,7 @@
 import { message } from "antd";
 import {
-  SET_GET_MY_LIST_ORDER,
-  SET_GET_MY_LIST_ORDER_HISTORY,
+  SET_GET_MY_LIST_TICKET,
+  SET_GET_MY_LIST_TICKET_HISTORY,
 } from "../../../type/BuyerType/Tickets/Tickets";
 
 import {
@@ -11,13 +11,13 @@ import {
 import { manageTicketsBuyer } from "../../../../Services/BuyerServices/ManageTicketsBuyer/ManageTicketsBuyer";
 
 // Xanh danh sách vé đã đặt action
-export const getMyListOrderAction = (buyerId) => {
+export const getMyListTicketAction = (buyerId) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
-      const result = await manageTicketsBuyer.getMyListOrder(buyerId);
+      const result = await manageTicketsBuyer.getMyListTicket(buyerId);
       dispatch({
-        typeo: SET_GET_MY_LIST_ORDER,
+        typeo: SET_GET_MY_LIST_TICKET,
         payload: result.data,
       });
       dispatch(hideLoadingAction);
@@ -26,14 +26,15 @@ export const getMyListOrderAction = (buyerId) => {
     }
   };
 };
+// Xem
 // Xem lịch sử giao dịch action
-export const getMyListOrderHistoryAction = (buyerId) => {
+export const getMyListTicketHistoryAction = () => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
-      const result = await manageTicketsBuyer.getMyListOrderHistory(buyerId);
+      const result = await manageTicketsBuyer.getMyListTicketHistory();
       dispatch({
-        type: SET_GET_MY_LIST_ORDER_HISTORY,
+        type: SET_GET_MY_LIST_TICKET_HISTORY,
         payload: result.data,
       });
       dispatch(hideLoadingAction);
@@ -43,11 +44,11 @@ export const getMyListOrderHistoryAction = (buyerId) => {
   };
 };
 // Hủy vé đã đặt action
-export const cancelOrderAction = (orderId) => {
+export const cancelTicketAction = (orderId) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
-      await manageTicketsBuyer.cancelOrder(orderId);
+      await manageTicketsBuyer.cancelTicket(orderId);
       dispatch(hideLoadingAction);
       message.success("Hủy vé thành công!");
     } catch (error) {

@@ -5,7 +5,7 @@ import {
   getListEventsAllAction,
   rejectEventAction,
 } from "../../../../Redux/actions/AdminActions/ManageEventsAction/ManageEventsAction";
-import { Table, Button, Tag, Space } from "antd";
+import { Table, Button, Tag } from "antd";
 import { useNavigate } from "react-router-dom";
 
 function ManageEventsAdminPage() {
@@ -55,11 +55,21 @@ function ManageEventsAdminPage() {
       dataIndex: "categories",
       key: "categories",
       render: (cats) =>
-        cats?.map((cat, index) => (
-          <Tag key={index} color="purple" style={{ marginBottom: 4 }}>
-            {cat}
+        Array.isArray(cats) ? (
+          cats.map((cat, index) => (
+            <Tag
+              key={`${cat}-${index}`}
+              color="purple"
+              style={{ marginBottom: 4 }}
+            >
+              {cat}
+            </Tag>
+          ))
+        ) : cats ? (
+          <Tag color="purple" style={{ marginBottom: 4 }}>
+            {cats}
           </Tag>
-        )),
+        ) : null,
     },
     {
       title: "Giá",
@@ -75,40 +85,54 @@ function ManageEventsAdminPage() {
       title: "Trạng thái",
       dataIndex: "status",
       key: "status",
-      render: (status) => (
-        <Tag
-          color={
-            status === "ACTIVE"
-              ? "green"
+      render: (status) =>
+        status ? (
+          <Tag
+            color={
+              status === "APPROVED"
+                ? "green"
+                : status === "CANCELLED"
+                ? "red"
+                : "gold"
+            }
+          >
+            {status === "APPROVED"
+              ? "Đã duyệt"
               : status === "CANCELLED"
-              ? "red"
-              : "gold"
-          }
-        >
-          {status}
-        </Tag>
-      ),
+              ? "Đã hủy"
+              : "Bị từ chối"}
+          </Tag>
+        ) : null,
     },
     {
       title: "Hành động",
       key: "actions",
-      render: (_, record) => (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 8,
-            maxWidth: 100,
-          }}
-        >
-          <Button type="primary" onClick={() => handleApprove(record._id)}>
-            Phê duyệt
-          </Button>
-          <Button danger onClick={() => handleReject(record._id)}>
-            Từ chối
-          </Button>
-        </div>
-      ),
+      render: (_, record) =>
+        record ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+              maxWidth: 100,
+            }}
+          >
+            <Button
+              disabled={record.status === "APPROVED"}
+              type="primary"
+              onClick={() => handleApprove(record._id)}
+            >
+              Phê duyệt
+            </Button>
+            <Button
+              disabled={record.status === "CANCELLED"}
+              danger
+              onClick={() => handleReject(record._id)}
+            >
+              Từ chối
+            </Button>
+          </div>
+        ) : null,
     },
     {
       title: "Chi tiết",
@@ -119,7 +143,7 @@ function ManageEventsAdminPage() {
           className="btn-event"
           size="small"
           onClick={() => {
-            navigate(`/admin/detail/${record._id}`);
+            navigate(`/admin/events/detail/${record._id}`);
           }}
         >
           Xem chi tiết
@@ -134,6 +158,7 @@ function ManageEventsAdminPage() {
       <h2 style={{ fontSize: 24, marginBottom: 16, margin: 15 }}>
         Quản lý suất diễn
       </h2>
+
       <Table
         columns={columns}
         dataSource={listEventsAll}

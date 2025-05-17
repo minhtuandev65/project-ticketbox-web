@@ -1,25 +1,25 @@
 import {
-  SET_GET_MY_LIST_ORDER,
-  SET_GET_MY_LIST_ORDER_HISTORY,
+  SET_GET_MY_LIST_TICKET,
+  SET_GET_MY_LIST_TICKET_HISTORY,
 } from "../../../type/BuyerType/Tickets/Tickets";
 
 const initialState = {
-  myListOrder: [],
-  myListOrderHistory: [],
+  myListTicket: [],
+  myListTicketHistory: [],
 };
 
 export const ManageTicketsBuyerReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_GET_MY_LIST_ORDER: {
+    case SET_GET_MY_LIST_TICKET: {
       return {
         ...state,
-        myListOrder: action.payload,
+        myListTicket: action.payload,
       };
     }
-    case SET_GET_MY_LIST_ORDER_HISTORY: {
+    case SET_GET_MY_LIST_TICKET_HISTORY: {
       return {
         ...state,
-        myListOrderHistory: action.payload,
+        myListTicketHistory: action.payload,
       };
     }
     default:

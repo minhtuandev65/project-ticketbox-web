@@ -4,17 +4,17 @@ export class ManageTicketsBuyer extends BaseService {
   // PAGE Quản lý vé
 
   //   Xem danh sách vé đã mua
-  getMyListOrder = (buyerId) => {
+  getMyListTicket = (buyerId) => {
     return apiClient.get(`api/tickets/user?buyer=${buyerId}`, {});
   };
 
   // Xem lịch sử giao dịch
-  getMyListOrderHistory = (buyerId) => {
-    return apiClient.get(`api/tickets/history?buyer=${buyerId}`, {});
+  getMyListOrderHistory = () => {
+    return apiClient.get(`api/tickets/history`, {});
   };
   // Hủy vé đã đặt
-  cancelOrder = (orderId) => {
-    return apiClient.put(`api/tickets/${orderId}/cancel`, {});
+  cancelTicket = (ticketId) => {
+    return apiClient.put(`api/tickets/${ticketId}/cancel`, {});
   };
 }
 export const manageTicketsBuyer = new ManageTicketsBuyer();

@@ -65,7 +65,7 @@ export default function MyProfile() {
     formUpdate.setFieldsValue({
       displayName: user.displayName,
       username: user.username,
-      gender: user.gender?.[0] || "UNKNOWN",
+      gender: user.gender || "UNKNOWN",
       avatar: user.avatar
         ? [
             {

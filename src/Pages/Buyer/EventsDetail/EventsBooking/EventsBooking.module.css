@@ -1,0 +1,33 @@
+.btn-orderTicket {
+    width: 10% !important;
+    transition: all 0.3s ease;
+    font-weight: 800 !important;
+    border: 1px solid #000000 !important;
+    background: transparent !important;
+    color: #000000 !important;
+    border-radius: 10px !important;
+}
+
+.btn-orderTicket:hover {
+    background: rgb(0, 0, 0) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.formCard {
+    width: 71.5%;
+    margin: 0 auto;
+    /* Căn giữa ngang */
+    display: flex;
+    flex-direction: column;
+    /* nếu cần */
+    align-items: center;
+    /* căn giữa nội dung trong flex */
+    border-radius: 16px;
+
+    padding: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {}
+
+@media (max-width: 640px) {}

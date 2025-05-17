@@ -36,6 +36,17 @@ import AdminTemplate from "./Template/AdminTemplate/AdminTemplate";
 import ManageEventsAdminPage from "./Pages/Admin/ManageEventsAdmin/ManageEventsAdminPage/ManageEventsAdminPage";
 import ManageEventsHotAdminPage from "./Pages/Admin/ManageEventsHotAdmin/ManageEventsHotAdminPage/ManageEventsHotAdminPage";
 import ManageEventDetailAdminPage from "./Pages/Admin/ManageEventsAdmin/ManageEventsDetailAdminPage/ManageEventsDetailAdminPage";
+import ManageOrganizationAdminPage from "./Pages/Admin/ManageOrganizationAdmin/ManageOrganizationAdminPage/ManageOrganizationAdminPage";
+import ManageUsersAdminPage from "./Pages/Admin/ManageUsersAdmin/ManageUsersAdminPage/ManageUsersAdminPage";
+import ManageUsersAdminDetailPage from "./Pages/Admin/ManageUsersAdmin/ManageUsersAdminDetailPage/ManageUsersAdminDetailPage";
+import HomeTemplate from "./Template/HomeTemplate/HomeTemplate";
+import HomePage from "./Pages/Buyer/Home/HomePage/HomePage";
+import CityCardList from "./Pages/Buyer/Home/CityCard/CityCardList/CityCardList";
+import SearchPage from "./Pages/Buyer/SearchPage/SearchPage";
+import EventDetaiUserlPage from "./Pages/Buyer/EventsDetail/EventsDetailPage/EventsDetailPage";
+import OrderPage from "./Pages/Buyer/HistoryOrder/HistoryOrderPage/OrderPage";
+import PaymentPage from "./Pages/Buyer/PaymentPage/PaymentPage";
+
 // Vendor page
 function AppEffects() {
   const navigate = useNavigate();
@@ -82,8 +93,17 @@ function App() {
             <Route path="info" element={<MyProfile />} />
             <Route path="hot" element={<ManageEventsHotAdminPage />} />
             <Route
-              path="detail/:eventId"
+              path="events/detail/:eventId"
               element={<ManageEventDetailAdminPage />}
+            />
+            <Route
+              path="organization"
+              element={<ManageOrganizationAdminPage />}
+            />
+            <Route path="users" element={<ManageUsersAdminPage />} />
+            <Route
+              path="users/detail/:userId"
+              element={<ManageUsersAdminDetailPage />}
             />
           </Route>
           {/* Vendor services */}
@@ -91,15 +111,26 @@ function App() {
             <Route index element={<EventsHotVendor />} />
             <Route path="events-hot" element={<EventsHotVendor />} />
             <Route path="info" element={<MyProfile />} />
-            <Route path="organization" element={<OrganizationVendor />} />
             <Route path="events" element={<EventsVendor />} />
             <Route
               path="events/detail/:eventId"
               element={<EventDetailPage />}
             />
+            <Route path="organization" element={<OrganizationVendor />} />
           </Route>
           {/* Buyer services */}
-
+          <Route path="/home" element={<HomeTemplate />}>
+            <Route index element={<HomePage />} />
+            <Route path="city-list" element={<CityCardList />} />
+            <Route path="search" element={<SearchPage />} />
+            <Route path="info" element={<MyProfile />} />
+            <Route
+              path="event/detail/:eventId"
+              element={<EventDetaiUserlPage />}
+            />
+            <Route path="order" element={<OrderPage />} />
+            <Route path="payment/:orderId" element={<PaymentPage />}/>
+          </Route>
           {/* ROUTE KHÔNG KHỚP TRẢ VỀ HOME */}
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>

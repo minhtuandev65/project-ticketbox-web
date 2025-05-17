@@ -33,6 +33,8 @@ function AdminTemplate() {
     const defaultPath = "/admin";
     if (location.pathname.startsWith(`${defaultPath}/hot`)) return "2";
     if (location.pathname.startsWith(`${defaultPath}/events`)) return "1";
+    if (location.pathname.startsWith(`${defaultPath}/organization`)) return "3";
+    if (location.pathname.startsWith(`${defaultPath}/users`)) return "4";
     return "";
   };
 
@@ -40,7 +42,7 @@ function AdminTemplate() {
     {
       key: "1",
       icon: (
-        <Tooltip title="Xem danh sự kiện" className="ant-tooltip-inner">
+        <Tooltip title="Quản lý sự kiện" className="ant-tooltip-inner">
           <CalendarOutlined />
         </Tooltip>
       ),
@@ -63,6 +65,38 @@ function AdminTemplate() {
       label: (
         <Link to="/admin/hot" style={{ textDecoration: "none", color: "#000" }}>
           Xem sự kiện nóng
+        </Link>
+      ),
+    },
+    {
+      key: "3",
+      icon: (
+        <Tooltip title="Quản lý tổ chức" className="ant-tooltip-inner">
+          <CalendarOutlined />
+        </Tooltip>
+      ),
+      label: (
+        <Link
+          to="/admin/organization"
+          style={{ textDecoration: "none", color: "#000" }}
+        >
+          Quản lý tổ chức
+        </Link>
+      ),
+    },
+    {
+      key: "4",
+      icon: (
+        <Tooltip title="Quản lý người dùng" className="ant-tooltip-inner">
+          <CalendarOutlined />
+        </Tooltip>
+      ),
+      label: (
+        <Link
+          to="/admin/users"
+          style={{ textDecoration: "none", color: "#000" }}
+        >
+          Quản lý người dùng
         </Link>
       ),
     },

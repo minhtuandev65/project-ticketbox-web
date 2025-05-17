@@ -11,7 +11,10 @@ function HeaderLogin() {
     <Layout>
       <Header className="header">
         {/* Logo */}
-        <Link to="/home" style={{ textDecoration: "none" }}>
+        <Link
+          to="/home"
+          style={{ display: "flex", alignItems: "center", height: "100%" }}
+        >
           <img src={logo} alt="logo" style={{ width: "200px" }} />
         </Link>
 

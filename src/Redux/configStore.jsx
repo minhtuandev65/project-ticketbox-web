@@ -16,6 +16,8 @@ import { ManageRatingsBuyerReducer } from "./reducer/BuyerReducer/ManageRatingsR
 import { ManageUsersReducer } from "./reducer/ManageUsersReducer/ManageUsersReducer";
 import { LoadingReducer } from "./reducer/LoadingReducer/LoadingReducer";
 import { ManageOrganizationVendorReducer } from "./reducer/VendorReducer/ManageOrganizationReducer/ManageOrganizationReducer";
+import { SearchReducer } from "./reducer/BuyerReducer/SearchReducer/SearchReducer";
+import { ManageOrdersBuyerReducer } from "./reducer/BuyerReducer/ManageOrdersReducer/ManageOrdersReducer";
 
 const rootReducer = combineReducers({
   // Loading reducer
@@ -36,9 +38,11 @@ const rootReducer = combineReducers({
   ManageEventsBuyerReducer,
   ManageTicketsBuyerReducer,
   ManageRatingsBuyerReducer,
+  ManageOrdersBuyerReducer,
 
   // User services
   ManageUsersReducer,
+  SearchReducer,
 });
 
 export const store = configureStore({

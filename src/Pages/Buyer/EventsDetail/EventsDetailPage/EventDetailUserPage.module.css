@@ -1,0 +1,237 @@
+
+.ticketContainer {
+    display: flex;
+    width: 70%;
+    min-height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    /* box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); */
+    margin: 32px auto;
+    position: relative;
+}
+.mainRow {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+.ticketLeft {
+    width: 30%;
+    background-color: #2f2f2f;
+    color: #fff;
+    padding: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top-right-radius: none;
+    border-bottom-right-radius: none;
+}
+
+.ticketLeft::before,
+.ticketLeft::after {
+    content: "";
+    position: absolute;
+    right: -48px;
+    /* nửa hình tròn nhô ra ngoài */
+    width: 92px;
+    height: 92px;
+    background: linear-gradient(to right, #eafbf2, #d2f4e1);
+    border-radius: 50%;
+    z-index: 2;
+
+}
+
+.ticketLeft::before {
+    top: 0;
+    transform: translateY(-50%);
+}
+
+.ticketLeft::after {
+    bottom: 0;
+    transform: translateY(50%);
+}
+
+
+.ticketRight {
+    width: 70%;
+    background-size: cover;
+    background-position: center;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    position: relative;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.ticketRight::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -16px;
+    /* bằng bán kính */
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+
+/* Tiêu đề */
+.eventTitle {
+    color: #fff !important;
+    margin-bottom: 16px;
+}
+
+/* Địa chỉ nhỏ */
+.address {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 16px;
+}
+
+/* Đường gạch ngang */
+.divider {
+    height: 1px;
+    width: 100%;
+    background: #555;
+    margin: 16px 0;
+}
+
+.infoCard {
+    width: 70%;
+    margin: 0 auto;
+    /* Căn giữa ngang */
+    display: flex;
+    flex-direction: column;
+    /* nếu cần */
+    align-items: center;
+    /* căn giữa nội dung trong flex */
+    border-radius: 16px;
+    transition: max-height 0.3s ease;
+}
+
+
+/* Giá */
+.price {
+    color: #00ff87;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-viewMore {
+    transition: all 0.3s ease;
+    font-weight: 800 !important;
+    border: 2px solid #ffffff !important;
+    background: transparent !important;
+    color: #000000 !important;
+    border-radius: 30px !important;
+}
+
+.btn-viewMore:hover {
+    outline: 1px solid #000000 !important;
+    background: rgb(255, 255, 255) !important;
+    color: black !important;
+}
+
+.btn-orderTicket {
+    width: 10% !important;
+    transition: all 0.3s ease;
+    font-weight: 800 !important;
+    border: 1px solid #000000 !important;
+    background: transparent !important;
+    color: #000000 !important;
+    border-radius: 30px !important;
+}
+
+.btn-orderTicket:hover {
+    outline: 1px solid #000000 !important;
+    background: rgb(255, 255, 255) !important;
+    color: black !important;
+}
+
+/* Nút */
+.buyButton {
+    transition: all 0.3s ease;
+    font-weight: 800 !important;
+    border: 2px solid #ffffff !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    border-radius: 30px !important;
+    height: 60px !important;
+    width: 200px !important;
+}
+
+.buyButton:hover {
+    outline: 1px solid #000000 !important;
+    background: rgb(255, 255, 255) !important;
+    color: black !important;
+}
+
+.formCard {
+    width: 70%;
+    margin: 0 auto;
+    /* Căn giữa ngang */
+    display: flex;
+    flex-direction: column;
+    /* nếu cần */
+    align-items: center;
+    /* căn giữa nội dung trong flex */
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ticketContainer {
+        flex-direction: column;
+    }
+
+    .ticketLeft,
+    .ticketRight {
+        width: 100%;
+        clip-path: none;
+        border-radius: 0;
+    }
+
+    .ticketLeft {
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+
+    .ticketRight {
+        height: 200px;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .ticketContainer {
+        flex-direction: column;
+    }
+
+    .ticketLeft,
+    .ticketRight {
+        width: 100%;
+        clip-path: none;
+        border-radius: 0;
+    }
+
+    .ticketLeft {
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+
+    .ticketRight {
+        height: 200px;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+
+    /* Ẩn hai nửa hình tròn khi ở mobile */
+    .ticketLeft::before,
+    .ticketLeft::after,
+    .ticketRight::before {
+        display: none;
+    }
+}

@@ -10,6 +10,7 @@ import {
   Table,
   Space,
   Skeleton,
+  Descriptions,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -38,6 +39,7 @@ export default function EventDetailPage() {
     description,
     bannerURL,
     date,
+    city,
     location,
     totalTickets,
     availableTickets,
@@ -62,7 +64,23 @@ export default function EventDetailPage() {
       title: "Trạng thái",
       dataIndex: "status",
       key: "status",
-      render: (s) => <Tag color={s === "BOOK_NOW" ? "green" : "red"}>{s}</Tag>,
+      render: (status) => (
+        <Tag
+          color={
+            status === "BOOK_NOW"
+              ? "green"
+              : status === "SOLD_OUT"
+              ? "red"
+              : "default"
+          }
+        >
+          {status === "BOOK_NOW"
+            ? "Có thể đặt"
+            : status === "SOLD_OUT"
+            ? "Hết vé"
+            : "Ngừng đặt"}
+        </Tag>
+      ),
     },
     {
       title: "Bắt đầu",
@@ -88,74 +106,69 @@ export default function EventDetailPage() {
       key: "isSalable",
       render: (b) => (b ? "Có" : "Không"),
     },
-    {
-      title: "Chi tiết vé",
-      key: "ticketTypes",
-      render: (_, record) => (
-        <Table
-          dataSource={record.ticketTypes}
-          pagination={false}
-          size="small"
-          rowKey="name"
-          columns={[
-            { title: "Tên vé", dataIndex: "name", key: "name" },
-            {
-              title: "Giá",
-              dataIndex: "price",
-              key: "price",
-              render: (v) => v.toLocaleString() + "₫",
-            },
-            {
-              title: "Số tối thiểu",
-              dataIndex: "minQtyPerOrder",
-              key: "minQtyPerOrder",
-            },
-            {
-              title: "Số tối đa",
-              dataIndex: "maxQtyPerOrder",
-              key: "maxQtyPerOrder",
-            },
-            {
-              title: "Trạng thái",
-              dataIndex: "status",
-              key: "status",
-            },
-          ]}
-        />
-      ),
-    },
   ];
 
   return (
     <div style={{ padding: 24 }}>
-      <Row gutter={24}>
-        <Col span={16}>
-          <Image src={bannerURL} alt={title} style={{ marginBottom: 16 }} />
-          <Title level={2}>{title}</Title>
-          <Paragraph>{description}</Paragraph>
+      <Row gutter={32}>
+        <Col span={24}>
+          <div style={{ textAlign: "center", marginBottom: 24 }}>
+            <Image
+              src={bannerURL}
+              alt={title}
+              style={{ borderRadius: 8, maxHeight: 400, objectFit: "cover" }}
+            />
+          </div>
 
-          <Space wrap size="large" style={{ marginBottom: 16 }}>
-            <Text>
-              <b>Ngày:</b> {dayjs(date).format("DD/MM/YYYY HH:mm")}
-            </Text>
-            <Text>
-              <b>Địa điểm:</b> {location}
-            </Text>
-            <Text>
-              <b>Giá vé:</b>{" "}
+          <Title level={2}>
+            <b>Tên sự kiện: </b>
+            {title}
+          </Title>
+          <Descriptions
+            bordered
+            column={1}
+            size="middle"
+            style={{ marginBottom: 32 }}
+          >
+            <Descriptions.Item label="Mô tả">
+              <Paragraph
+                ellipsis={{
+                  rows: 3,
+                  expandable: true,
+                  symbol: "Xem thêm",
+                }}
+                style={{ marginBottom: 0 }}
+              >
+                {description}
+              </Paragraph>
+            </Descriptions.Item>
+          </Descriptions>
+
+          <Descriptions
+            bordered
+            column={{ xs: 1, sm: 1, md: 2 }}
+            size="middle"
+            title="Thông tin sự kiện"
+            style={{ marginBottom: 32 }}
+          >
+            <Descriptions.Item label="Ngày">
+              {dayjs(date).format("DD/MM/YYYY HH:mm")}
+            </Descriptions.Item>
+            <Descriptions.Item label="Thành phố">{city}</Descriptions.Item>
+            <Descriptions.Item label="Địa điểm">{location}</Descriptions.Item>
+            <Descriptions.Item label="Giá vé">
               {isFree ? "Miễn phí" : `${price?.toLocaleString()}₫`}
-            </Text>
-            <Text>
-              <b>Vé còn:</b> {availableTickets}/{totalTickets}
-            </Text>
-            <Text>
-              <b>Hot:</b> {isHot ? "Có" : "Không"}
-            </Text>
-            <Text>
-              <b>Cho phép đặt:</b> {isBookingAllowed ? "Có" : "Không"}
-            </Text>
-            <Text>
-              <b>Trạng thái sự kiện:</b>{" "}
+            </Descriptions.Item>
+            <Descriptions.Item label="Số vé còn lại">
+              {availableTickets}/{totalTickets}
+            </Descriptions.Item>
+            <Descriptions.Item label="Sự kiện được yêu thích">
+              {isHot ? "Có" : "Không"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Cho phép đặt vé">
+              {isBookingAllowed ? "Có" : "Không"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Trạng thái sự kiện">
               <Tag
                 color={
                   status === "APPROVED"
@@ -171,15 +184,26 @@ export default function EventDetailPage() {
                   ? "Chờ duyệt"
                   : "Bị từ chối"}
               </Tag>
-            </Text>
-            <Text>
-              <b>Vendor:</b> {vendor?.email}
-            </Text>
-            <Text>
-              <b>Tổ chức:</b> {organization?.name}{" "}
-            </Text>
-            <Text>
-              <b>Trạng thái tổ chức:</b>
+            </Descriptions.Item>
+            <Descriptions.Item label="Ngày tạo">
+              {dayjs(createdAt).format("DD/MM/YYYY")}
+            </Descriptions.Item>
+          </Descriptions>
+
+          <Descriptions
+            bordered
+            column={{ xs: 1, sm: 1, md: 2 }}
+            size="middle"
+            title="Thông tin tổ chức"
+            style={{ marginBottom: 32 }}
+          >
+            <Descriptions.Item label="Người tạo sự kiện">
+              {vendor?.email}
+            </Descriptions.Item>
+            <Descriptions.Item label="Tên tổ chức">
+              {organization?.name}
+            </Descriptions.Item>
+            <Descriptions.Item label="Trạng thái tổ chức">
               <Tag
                 color={
                   organization?.status === "APPROVED"
@@ -195,11 +219,8 @@ export default function EventDetailPage() {
                   ? "Chờ duyệt"
                   : "Bị từ chối"}
               </Tag>
-            </Text>
-            <Text>
-              <b>Ngày tạo:</b> {dayjs(createdAt).format("DD/MM/YYYY")}
-            </Text>
-          </Space>
+            </Descriptions.Item>
+          </Descriptions>
 
           {showings.length > 0 ? (
             <>
@@ -210,6 +231,68 @@ export default function EventDetailPage() {
                 rowKey="_id"
                 pagination={false}
                 bordered
+                scroll={{ x: "max-content" }}
+                expandable={{
+                  expandedRowRender: (record) => (
+                    <div style={{ overflowX: "auto" }}>
+                      <Table
+                        dataSource={record.ticketTypes}
+                        columns={[
+                          {
+                            title: "Thứ hạng vé",
+                            dataIndex: "name",
+                            key: "name",
+                          },
+                          {
+                            title: "Giá",
+                            dataIndex: "price",
+                            key: "price",
+                            render: (v) => v.toLocaleString() + "₫",
+                          },
+                          {
+                            title: "Số tối thiểu",
+                            dataIndex: "minQtyPerOrder",
+                            key: "minQtyPerOrder",
+                          },
+                          {
+                            title: "Số tối đa",
+                            dataIndex: "maxQtyPerOrder",
+                            key: "maxQtyPerOrder",
+                          },
+                          {
+                            title: "Trạng thái",
+                            dataIndex: "status",
+                            key: "status",
+                            render: (status) => (
+                              <Tag
+                                color={
+                                  status === "BOOK_NOW"
+                                    ? "green"
+                                    : status === "SOLD_OUT"
+                                    ? "red"
+                                    : "default"
+                                }
+                              >
+                                {status === "BOOK_NOW"
+                                  ? "Có thể đặt"
+                                  : status === "SOLD_OUT"
+                                  ? "Hết vé"
+                                  : "Ngừng đặt"}
+                              </Tag>
+                            ),
+                          },
+                        ]}
+                        rowKey="name"
+                        pagination={false}
+                        size="small"
+                        scroll={{ x: "max-content" }}
+                      />
+                    </div>
+                  ),
+                  rowExpandable: (record) =>
+                    Array.isArray(record.ticketTypes) &&
+                    record.ticketTypes.length > 0,
+                }}
               />
             </>
           ) : (
